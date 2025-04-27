@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.monapp</groupId>
+  <artifactId>mon-app</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>mon-app</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.source>24</maven.compiler.source>
+    <maven.compiler.target>24</maven.compiler.target>
+    <maven.compiler.release>24</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>5.9.3</junit.version>
+    <mockito.version>5.3.1</mockito.version>
+  </properties>
+
+
+  <dependencies>
+      <!-- Dépendance JUnit 4 -->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.13.2</version>
+          <scope>test</scope>
+      </dependency>
+      
+      <!-- Dépendance Mockito -->
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+          <version>4.11.0</version>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
+
+
+  <build>
+    <plugins>
+      <!-- Plugin pour exécuter ton Main -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>com.monapp.Main</mainClass>
+          <arguments>
+            <argument>--enable-native-access=ALL-UNNAMED</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin pour compiler en Java 24 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>24</release>
+          <compilerArgs>
+            <arg>--enable-preview</arg>
+          </compilerArgs>
+          <parameters>true</parameters>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin pour lancer les tests correctement -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <argLine>--enable-preview --enable-native-access=ALL-UNNAMED</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
