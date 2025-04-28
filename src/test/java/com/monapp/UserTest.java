@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UserTest {
-    private Database database;
+    private UserDatabase database;
 
     @Before
     public void setUp() {
-        database = mock(Database.class);
+        database = mock(UserDatabase.class);
     }
 
     /*
